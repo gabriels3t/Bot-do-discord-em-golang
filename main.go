@@ -4,7 +4,7 @@ import(
 	"fmt"
 	"os"
 	"log"
-
+	"time"
 	"github.com/bwmarrin/discordgo"
 	
 )
@@ -24,6 +24,15 @@ func messageCreate(s *discordgo.Session, message *discordgo.MessageCreate){
 	}
 	if message.Content == "!ping"{
 		s.ChannelMessageSend(message.ChannelID,"Pong !")
+	}
+
+	if message.Content == "!time"{
+		s.ChannelMessageSend(message.ChannelID,"To contando :)")
+		go func(){
+			time.Sleep(20*time.Minute)
+			s.ChannelMessageSend(message.ChannelID,"Tempo acabou :(")
+		}()
+		
 	}
 }
 
